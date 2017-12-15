@@ -146,5 +146,122 @@ spring:
         data-key: data
 ```   
 
-The properties can be inserted either manually from the Consul UI or via REST 
-call. To set the properties manually,  
+The properties can be inserted either manually from the Consul UI or via 
+command line. 
+
+#### Entry of Properties from Consul Web UI
+To set configuration properties from Consul UI:
+- Open the Consul UI page by opening the link, **http://localhost:8500/ui/**, 
+in your favorite browser.
+- Once the page is open, navigate to KV page by clicking the **KEY/VALUE**
+button.
+- In the KV page, create a new key by entering `config/spring-consul-example/data`
+as the name of the key in text box below **Create Key**.
+- Enter a YAML blob or plain string in the text area below and click the
+**CREATE** button. This will enter a new set of properties
+
+![](./img/key-value-yaml.png)
+
+#### Entry of Properties from Commandline
+Consul Agent also provides a command line too to create configuration properties.
+- Open a terminal and naviagte to the the directory where the Consul Agent
+is located.
+- To create a new property named `foo` with a value `bar, you can execute 
+the following command:
+```
+$ ./consul kv put foo bar
+```
+It will create the new property,
+```
+Success! Data written to: foo
+```
+
+- Once the property is created, you can also access the property from the
+command line,
+```
+$ ./consul kv get foo
+bar
+``` 
+
+The previously created property from the UI can also be accessed by the 
+following command:
+
+```
+$ ./consul kv get config/spring-consul-example/data
+cassandra:
+  host: 127.0.0.1:9042,127.0.0.2:9042
+  user: my_user
+  password: my_pass
+```
+
+You can also load YAMl properties from command line,
+
+```
+$  ./consul kv put config/application/data @data.yml
+Success! Data written to: config/application/data
+```
+
+The data can be retrieved the same way, 
+
+```
+$ ./consul kv get config/application/data
+cassandra:
+  host: 127.0.0.1:9042,127.0.0.2:9042
+  user: my_user
+  password: my_pass
+```
+
+### Read Configuration Properties
+The configuration is loaded by Spring service during the **bootstrap** phase.
+The properties can be read from Consul KV store with the help of `@Value` 
+annotation and the stored property name. Here is an example,
+
+```java
+@Configuration
+@RefreshScope
+public class ConsulConfiguration {
+
+    @Value("${cassandra.host}")
+    private String cassandraHost;
+
+    @Value("${cassandra.user}")
+    private String userName;
+
+    @Value("${cassandra.password}")
+    private String password;
+
+
+    @PostConstruct
+    public void postConstruct() {
+        System.out.println(
+                "********** cassandra.host: " + cassandraHost);
+        System.out.println(
+                "********** cassandra.user: " + userName);
+        System.out.println(
+                "********** cassandra.password: " + password);
+    }
+}
+```
+
+Changes to Spring Boot Application class,
+
+```java
+@SpringBootApplication
+@EnableAutoConfiguration
+@EnableConfigurationProperties
+@EnableDiscoveryClient
+@ComponentScan(basePackages = {"com.basaki"})
+public class Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+### Run
+To run the client application fromm command line,
+
+```
+java -jar target/spring-security-consul-client-1.0.0.jar
+```

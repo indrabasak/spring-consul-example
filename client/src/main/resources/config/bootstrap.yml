@@ -9,6 +9,7 @@ spring:
       config:
         enabled: true
         prefix: config
+        defaultContext: application
         data-key: data
         profileSeparator: '::'
         format: yaml

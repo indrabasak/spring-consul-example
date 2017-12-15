@@ -25,12 +25,10 @@ Consul Agents servers are run in a cluster that communicates via
 [gossip protocol](https://www.consul.io/docs/internals/gossip.html) and uses
  [Raft consensus protocol](https://www.consul.io/docs/internals/consensus.html).
 
-#### Consul Agent
-
-- Configuration is loaded by a Sprint REST service during **bootstrap** phase.
-
-
    
+### Consusl Agent Installation
+You can find instructions for installing a Consul Agent 
+[here](https://www.consul.io/docs/install/index.html).
 
 ### Running Consul Agent
 The Consul agent is started with the consul agent command. This command blocks, 
@@ -45,22 +43,22 @@ the file system, you can start in the `dev` mode.
 ./consul agent -server -bind=127.0.0.1 -data-dir=./data -bootstrap-expect=1 -node=agent-one -ui
 ```
 
-- `-bind` - The IPv4 address bound to the agent. In this example, it is 
+- `-bind` - binds the IPv4 address to the agent. In this example, it is 
 bound to the `localhost`.
 
-- `-bootstrap-expect` - It represents the number of expected servers in the 
+- `-bootstrap-expect` represents the number of expected servers in the 
 datacenter. This flag is required in `-server` mode. In this example, it is 
 specified as `1`.
 
-- `-data-dir` - This flag provides a data directory for the agent to store state.
+- `-data-dir` provides a data directory for the agent to store state.
 In this example, it points to the `data` folder. It is located under the same
 directory where the agent is running.
 
-- `-node` - The name of this node in the cluster. This must be unique within 
+- `-node` gives a name to this node in the cluster. This must be unique within 
 the cluster. By default this is the hostname of the machine. In this example,
 it is named `agent-one`.
 
-- `-ui` - It enables the built-in web UI server and the required HTTP routes.
+- `-ui` enables the built-in web UI server and the required HTTP routes.
 
 Once the consul agent starts up, you should notice the following on the terminal,
 
@@ -103,14 +101,6 @@ To build the JAR, execute the following command from the parent directory:
 mvn clean install
 ```
 
-### Run
-To run the application fromm command line,
-
-```
-java -jar target/spring-security-consul-example-1.0.0.jar
-```
-
-### Usage
 
 
 

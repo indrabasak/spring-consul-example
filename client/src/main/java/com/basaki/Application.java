@@ -19,7 +19,6 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-//@EnableConfigurationProperties({CassandraProperties.class})
 @EnableConfigurationProperties
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.basaki"})
