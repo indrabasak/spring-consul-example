@@ -261,7 +261,10 @@ public class Application {
 ```
 
 ### Run
-To run the client application fromm command line,
+Bfore running the Spring Boot application, please make sure that the Consul 
+Agent is up and running with the application configuration properties loaded.
+The Spring Boot the client application can be run from the command line by
+the following command,
 
 ```
 java -jar target/spring-security-consul-client-1.0.0.jar
