@@ -232,14 +232,14 @@ public class ConsulConfiguration {
     private String password;
 
 
+    /**
+     * To validate that the properties are set correctly.
+     */
     @PostConstruct
     public void postConstruct() {
-        System.out.println(
-                "********** cassandra.host: " + cassandraHost);
-        System.out.println(
-                "********** cassandra.user: " + userName);
-        System.out.println(
-                "********** cassandra.password: " + password);
+        System.out.println("** cassandra.host: " + cassandraHost);
+        System.out.println("** cassandra.user: " + userName);
+        System.out.println("** cassandra.password: " + password);
     }
 }
 ```
