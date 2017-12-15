@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: spring-consul-example
+  profiles: default
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        prefix: config
+        data-key: data
+        profileSeparator: '::'
+        format: yaml
+
+management:
+  security:
+    enabled: false
+  health:
+    consul:
+      enabled: false   # must be false to pass /health check

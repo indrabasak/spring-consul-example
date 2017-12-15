@@ -1,0 +1,34 @@
+server:
+  port: 8888
+
+
+# For Spring Actuator /info endpoint
+info:
+    artifact: spring-config-server
+    name: spring-config-server
+    description: Spring Config Server Example
+    version: 1.0.0
+
+management:
+  security:
+    enabled: false
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+
+spring:
+  cloud:
+    config:
+      server:
+#        git:
+#          uri: ssh://localhost/config
+#          clone-on-start: true
+        consul:
+          watch:
+            host: localhost
+            port: 8500
+
+
+#security.user.name=root
+#security.user.password=s3cr3t

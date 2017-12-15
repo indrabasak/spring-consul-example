@@ -1,0 +1,56 @@
+# use a random unassigned HTTP port by scanning for free port
+server:
+  port: 8080
+
+
+# For Spring Actuator /info endpoint
+info:
+    artifact: spring-consul-client
+    name: spring-consul-client
+    description: Spring Consul Client Example
+    version: 1.0.0
+
+datasource:
+  validationQuery: SELECT 1
+  initialSize: 1
+  maxActive: 3
+  testWhileIdle: true
+  testOnBorrow: true
+
+jpa:
+  show-sql: true
+  format_sql: true
+  properties:
+    org:
+      hibernate:
+        flushMode: AUTO
+
+#management:
+#  security:
+#    enabled: false
+#  health:
+#    consul:
+#      enabled: false   # must be false to pass /health check
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.consul: DEBUG
+
+#logging:
+#  level:
+#    org.springframework: DEBUG
+
+#spring:
+#  cloud:
+#    consul:
+#      discovery:
+#        healthCheckPath: /health
+#        healthCheckInterval: 15s
