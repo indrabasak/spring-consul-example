@@ -194,7 +194,8 @@ cassandra:
   password: my_pass
 ```
 
-You can also load YAMl properties from command line,
+You can also load YAMl properties from command line. The YAML data can be read 
+from a file by prefixing the file name with the @ symbol.
 
 ```
 $  ./consul kv put config/application/data @data.yml

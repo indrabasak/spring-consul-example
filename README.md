@@ -20,11 +20,25 @@ registered with it.
 - **KV Store:** Consul provides a _hierarchical key/value store_ for 
 configuration and metadata.
 
-#### Consul Architecture
+### Consul Architecture
 Consul Agents servers are run in a cluster that communicates via 
 [gossip protocol](https://www.consul.io/docs/internals/gossip.html) and uses
  [Raft consensus protocol](https://www.consul.io/docs/internals/consensus.html).
 
+
+- **Agent** is the long running daemon on every member of the Consul cluster. 
+
+- **Client** is an agent that forwards all RPCs to a server. It is relatively stateless. 
+
+- **Server** is an agent with an extra set of responsibilities including  
+participating in the Raft quorum, maintaining cluster state, responding to 
+RPC queries, data persistence, etc.
+
+- **Consensus** implies the consistency of a replicated state machine.
+
+- **Gossip** is the protocol used by Consul for communication between nodes.
+
+![](./img/consul.png)
    
 ### Consusl Agent Installation
 You can find instructions for installing a Consul Agent 
@@ -101,7 +115,8 @@ To build the JAR, execute the following command from the parent directory:
 mvn clean install
 ```
 
-
+### Spring Boot Client 
+You can find more information about Spring Boot Client [here](./client/README.md).
 
 
 [travis-badge]: https://travis-ci.org/indrabasak/spring-consul-example.svg?branch=master
