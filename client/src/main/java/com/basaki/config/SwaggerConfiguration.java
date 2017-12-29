@@ -38,7 +38,8 @@ public class SwaggerConfiguration {
                 .apis(exactPackage("com.basaki.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo("Book Sevice API", "API for Book Service"));
+                .apiInfo(apiInfo("Book Sevice API",
+                        "An example of using consul key-value store for Spring configuration."));
     }
 
     /**
@@ -50,8 +51,8 @@ public class SwaggerConfiguration {
      * @return API information
      */
     private ApiInfo apiInfo(String title, String description) {
-        Contact contact = new Contact("Iovation Service Team", "",
-                "servicedev@iovation.com");
+        Contact contact = new Contact("Indra Basak", "",
+                "indra@basak.com");
         return new ApiInfo(title, description, "1.0.0",
                 "terms of service url",
                 contact, "license", "license url",
