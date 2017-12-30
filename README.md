@@ -38,7 +38,7 @@ RPC queries, data persistence, etc.
 
 - **Gossip** is the protocol used by Consul for communication between nodes.
 
-![](./img/consul.png)
+![](./img/consul-architecture.svg)
    
 ### Consusl Agent Installation
 You can find instructions for installing a Consul Agent 
